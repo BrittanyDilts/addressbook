@@ -1,0 +1,69 @@
+<!DOCTYPE>
+<html ng-app="AddressBookApp">
+    <head>
+        <title>Address Book App | SRC Code Challenge</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="/addressBookCtrl.js"></script>
+    </head>
+    <body ng-controller="AddressBookCtrl">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center mb-3">My Address Book</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form name="addressForm">
+                        <div class="row form-group">
+                            <label class="col-4 text-right" for="saves">My addresses</label>
+                            <div class="col-8"><select id="saves" class="form-control" ng-model="address" 
+                                ng-options="address.label for address in addresses | filter: address.label | filter: address.co_name | filter:address.recip_name | filter: address.street | filter: address.street2 | filter:address.city | filter:address.state | filter: address.zip"></select></div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-4 text-right" for="label">Entry Label</label>
+                            <div class="col-8"><input id="label" class="form-control" name="label" ng-model="address.label" required/></div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-4 text-right" for="co_name">Company name</label>
+                            <div class="col-8"><input id="co_name" class="form-control" name="co_name" ng-model="address.co_name" required /></div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-4 text-right" for="recip_name">Recipient name</label>
+                            <div class="col-8"><input id="recip_name" class="form-control" name="recip_name" ng-model="address.recip_name" required /></div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-4 text-right" for="street">Street</label>
+                            <div class="col-8"><input id="street" class="form-control" name="street" ng-model="address.street" required/></div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-4 text-right" for="street2">Street, line 2</label>
+                            <div class="col-8"><input id="street2" class="form-control" name="street2" ng-model="address.street2" /></div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-4 text-right" for="city">City</label>
+                            <div class="col-8"><input id="city" class="form-control" name="city" ng-model="address.city" required/></div>
+                        </div>
+                        <div class="row form-group">
+                            <!-- angular filter/directive to uppercase this - look for package? -->
+                            <label class="col-4 text-right" for="state">State</label>
+                            <div class="col-8"><input id="state" class="form-control" name="state" ng-model="address.state" ng-value="{{address.state}}" uppercase required/></div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-4 text-right" for="zip">Zip</label>
+                            <div class="col-8"><input id="zip" class="form-control" name="zip" ng-model="address.zip" required/></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary float-right" ng-click="addAddress(address)">Save</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        
+    </body>
+
+</html>
