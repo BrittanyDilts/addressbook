@@ -4,11 +4,14 @@ function($scope, $http, $timeout){
     console.log("Make it so");
 
     $scope.addresses = [];
-    $http.get('/addresses').then(function(response){
-        console.log("Addresses received...");
-        $scope.addresses = response.data;
-        console.log($scope.addresses);
-    });
+    function getAddresses(){
+        $http.get('/addresses').then(function(response){
+            console.log("Addresses received...");
+            $scope.addresses = response.data;
+            console.log($scope.addresses);
+        });
+    }
+    getAddresses();
     
     $scope.addAddress = function(address){
         console.log(address);
@@ -22,6 +25,7 @@ function($scope, $http, $timeout){
             $scope.address = {};
             $scope.addressForm.$setPristine();
             $scope.addressForm.$setUntouched();
+            getAddresses();
         }, 500);
         
     }
